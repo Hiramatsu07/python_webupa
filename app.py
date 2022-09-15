@@ -1,3 +1,4 @@
+from email.policy import default
 from flask import Flask, redirect
 from resources.task import Task
 from flask_restful import Api
@@ -28,9 +29,13 @@ app.config['SWAGGER'] = {
     'static_url_path': f'{PREFIX}/static'
 }
 swagger = Swagger(app)
-
+def env_config(name, defaul):
+    app.config[name] = os.environ.get(name, default = default)
 #database config 
-env_config('SQlALCHEMY_DATABASE_URI', 'postgresql://postgres@localhost:5432/todosa')
+env_config('SQlALCHEMY_DATABASE_URI', 'postgresql://postgres@localhost:5432/todo')
+app.config['SQLLACHEMY_TRACK_MODIFICATIONS'] = False
+app.config['PROPAGATE_EXCEPTIONS'] = True
+app.config['SQLALCHEMY_ECHO'] = False
 
 @app.route('/')
 @app.route(f'{PREFIX}')
