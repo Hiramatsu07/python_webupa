@@ -4,6 +4,7 @@ from flasgger import swag_from
 from flask import request
 
 from utils import paginated_results, _assign_if_something, restrict
+
 class Task(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('id', type = int)
@@ -51,7 +52,7 @@ class TaskSearch(Resource):
         if request.json:
             filtros = request.json
             query = restrict(query,filtros,'id',lambda x: TaskModel.id == x)
-            query = restrict(query,filtros,'descrip',lambda x: TaskModel.id.contains(x))
-            query = restrict(query,filtros,'status',lambda x: TaskModel.id.contains(x))
+            query = restrict(query,filtros,'descrip',lambda x: TaskModel.descrip.contains(x))
+            query = restrict(query,filtros,'status',lambda x: TaskModel.status.contains(x))
             #logica de filtrado de datos 
         return paginated_results(query)
