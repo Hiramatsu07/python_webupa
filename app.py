@@ -54,7 +54,7 @@ def welcome():
  
 api.add_resource(Task, f'{PREFIX}/tasks/<id>')
 api.add_resource(TaskList, f'{PREFIX}/tasks')
-api.add_resource(TaskSearch, f'{PREFIX}/tasks')
+api.add_resource(TaskSearch, f'{PREFIX}/search/tasks')
 
 
 # Bloque opcional para ejecutar con python app.py

@@ -4,7 +4,7 @@ tags:
 - "task"
 responses:
   200:
-    description: ESe trajo correctamente el registro
+    description: Se trajo correctamente el registro
   404:
     description: No se encuentra la tarea
 parameters: 

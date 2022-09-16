@@ -1,3 +1,4 @@
+from tkinter import E
 from models.task import TaskModel
 from flask_restful import Resource,reqparse
 from flasgger import swag_from
@@ -8,7 +9,7 @@ from utils import paginated_results, _assign_if_something, restrict
 class Task(Resource):
     parser = reqparse.RequestParser()
     parser.add_argument('id', type = int)
-    parser.add_argument('description', type = str)
+    parser.add_argument('descrip', type = str)
     parser.add_argument('status', type = str)
 
     @swag_from('../swagger/task/get_task.yaml')
@@ -41,9 +42,20 @@ class TaskList(Resource):
     def get(self):
         query = TaskModel.query
         return paginated_results(query)
-    
-    #def post(self):
 
+    @swag_from('../swagger/task/post_task.yaml')
+    def post(self):
+        data = Task.parser.parse_args()
+
+        tarea = TaskModel(**data)
+
+        try:
+            tarea.save_to_db()
+        except Exception as e:
+            print(e)
+            return {'message': 'Ocurrió un error al crear la tarea'}
+
+        return tarea.json(), 201
 
 class TaskSearch(Resource):
     @swag_from('../swagger/task/search_task.yaml')

@@ -1,23 +1,19 @@
-Buscar una tarea
+Crear una tarea
 ---
 tags: 
-- "search"
+- "task"
 responses:
   200:
-    description: Búsqueda realizada correctamente
-  404:
-    description: La tarea seleccionada no existe
+    description: Se creo correctamente la tarea
+  500:
+    description: Error en la creación de la tarea
 parameters: 
-  - name: query
-    in: page
-    description: Tareas actuales de la página
-    default: 1
   - name: body
     in: body
     schema:
-      $ref: "#/definitions/Tasksearch"
+      $ref: "#/definitions/Taskpost"
 definitions:
-  TaskSearch:
+  Taskpost:
     type: "object"
     properties:
       id: 
