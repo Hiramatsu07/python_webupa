@@ -36,7 +36,7 @@ class TaskModel(db.Model):
         db.session.commit()
 
     def from_reqparse(self, newdata: Namespace):
-        for no_pk_key in ['description', 'status']:
+        for no_pk_key in ['descrip', 'status']:
             _assign_if_something(self, newdata, no_pk_key)
 
     

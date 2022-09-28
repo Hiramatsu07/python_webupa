@@ -1,19 +1,19 @@
-Actualizar una tarea
+Actualiza una tarea
 ---
-tags: 
+tags:
 - "task"
 responses:
   200:
-    description: Se trajo correctamente el registro
+    description: se trajo correctamente el registro
   404:
     description: No se encuentra la tarea
-parameters: 
+parameters:
   - name: id
     in: path
-    required: false
+    required: true
   - name: body
     in: body
-    schema:
+    schema: 
       $ref: "#/definitions/Taskput"
 definitions:
   Taskput:
@@ -26,6 +26,5 @@ definitions:
       status:
         type: "string"
     example:
-        id: 17
-        descrip: "bla bla"
-        status: "bla bla"
+      descrip: "hoy me tinho juju"
+      status: "feliz"

@@ -4,6 +4,7 @@ from resources.task import Task, TaskList, TaskSearch
 from flask_restful import Api
 from flasgger import Swagger
 
+from flask_cors import CORS
 from db import db
 
 import os
@@ -45,6 +46,8 @@ env_config('SQLALCHEMY_DATABASE_URI','postgresql://postgres:12345678@localhost:5
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['PROPAGATE_EXCEPTIONS'] = True
 app.config['SQLALCHEMY_ECHO'] = False
+
+CORS(app, resources={r'/*':{'origins':'*'}} )
 
 
 @app.route('/')
